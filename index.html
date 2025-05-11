@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvoicePro - Smart Billing Solutions</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #ffffff;
+            --accent-color: #555555;
+            --light-gray: #f8f9fa;
+            --dark-gray: #212529;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--primary-color);
+            background-color: var(--secondary-color);
+            line-height: 1.6;
+        }
+        
+        .navbar {
+            background-color: var(--secondary-color);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary-color) !important;
+        }
+        
+        .nav-link {
+            color: var(--primary-color) !important;
+            font-weight: 500;
+            margin: 0 10px;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+        }
+        
+        .hero-section {
+            padding: 100px 0;
+            background-color: var(--secondary-color);
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .feature-card {
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .screenshot {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-card {
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            background-color: var(--light-gray);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+        }
+        
+        .pricing-card {
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-title {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+        
+        .pricing-feature {
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            background-color: var(--dark-gray);
+            color: var(--secondary-color);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-title {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-link {
+            color: var(--secondary-color);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .footer-link:hover {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        
+        .social-icon {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+        
+        .social-icon:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+        }
+        /* Custom styling for perfect alignment */
+.logo-placeholder {
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover .logo-placeholder {
+    transform: rotate(15deg);
+}
+
+.brand-text {
+    letter-spacing: -0.5px;
+    position: relative;
+    top: 1px; /* Fine-tune text alignment */
+}
+
+.navbar-nav .nav-link {
+    font-weight: 500;
+    margin: 0 15px;
+    position: relative;
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #000;
+    transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 100%;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        margin-top: 15px;
+    }
+    .nav-link {
+        margin: 8px 0 !important;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#" style="gap: 0.75rem;">
+                <!-- Temporary logo (replace with your image) -->
+                <div class="logo-placeholder bg-dark text-white d-flex align-items-center justify-content-center rounded" 
+                     style="width: 40px; height: 40px; font-size: 1.1rem;">
+                    <img src="assets/Untitled design (1).png" style="width: 40px; height: 40px;"alt="">
+                </div>
+                <span class="brand-text fw-bold fs-4">QuoteSync</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#screenshots">Screenshots</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                </ul>
+                <div class="ms-lg-3 mt-3 mt-lg-0">
+                    <a href="login.html" class="btn btn-outline me-2">Login</a>
+                    <a href="signup.html" class="btn btn-primary">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="hero-title">Smart Billing Solutions for Your Business</h1>
+                    <p class="hero-subtitle">Streamline your invoicing process, track payments, and manage clients with our powerful billing software designed for businesses of all sizes.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#get-started" class="btn btn-primary">Get Started - It's Free</a>
+                        <a href="#demo" class="btn btn-outline">Watch Demo <i class="fas fa-play-circle ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <img src="assets/image/dashboard.png" alt="Invoice Dashboard" class="img-fluid screenshot">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Powerful Features</h2>
+                <p class="text-muted">Everything you need to manage your billing efficiently</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="feature-title">Quick Invoicing</h3>
+                        <p>Create professional invoices in seconds with our intuitive interface and customizable templates.</p>
+                    </div>
+                </div>
+                <!-- <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="feature-title">Real-time Analytics</h3>
+                        <p>Track your revenue, expenses, and outstanding payments with comprehensive dashboards.</p>
+                    </div>
+                </div> -->
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3 class="feature-title">Cloud Storage</h3>
+                        <p>Access your invoices and client data from anywhere, anytime. Automatic backups included.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Mobile Friendly</h3>
+                        <p>Manage your billing on the go with our fully responsive design and mobile app.</p>
+                    </div>
+                </div>
+                <!-- <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Secure Payments</h3>
+                        <p>Multiple payment gateways with bank-level security to protect your transactions.</p>
+                    </div>
+                </div> -->
+                <!-- <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="feature-title">Client Portal</h3>
+                        <p>Allow your clients to view invoices, make payments, and download receipts.</p>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section id="screenshots" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Beautiful Interface</h2>
+                <p class="text-muted">Designed for simplicity and efficiency</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="assets/image/dashboard1.png" alt="Invoice Creation" class="img-fluid screenshot">
+                </div>
+                <div class="col-md-4">
+                    <img src="assets/image/dashboard.png" alt="Dashboard" class="img-fluid screenshot">
+                </div>
+                <div class="col-md-4">
+                    <img src="assets/image/dashboard1.png" alt="Client Management" class="img-fluid screenshot">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">What Our Clients Say</h2>
+                <p class="text-muted">Trusted by businesses worldwide</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"InvoicePro has saved me countless hours of work. The automated reminders alone are worth the price!"</p>
+                        <div class="d-flex align-items-center">
+                            
+                            <div>
+                                <h5 class="testimonial-author mb-0">John Smith</h5>
+                                <small>CEO, Smith & Co.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"Switching to InvoicePro was the best decision for our accounting team. The reporting features are incredible."</p>
+                        <div class="d-flex align-items-center">
+                            
+                            <div>
+                                <h5 class="testimonial-author mb-0">Sarah Johnson</h5>
+                                <small>Finance Director, TechCorp</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"The customer support is outstanding. They helped us customize the platform to our specific needs."</p>
+                        <div class="d-flex align-items-center">
+                            
+                            <div>
+                                <h5 class="testimonial-author mb-0">Michael Brown</h5>
+                                <small>Owner, Brown Consulting</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Simple Pricing</h2>
+                <p class="text-muted">Choose the plan that fits your business needs</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="pricing-card">
+                        <h3 class="pricing-title">Starter</h3>
+                        <div class="pricing-price">$9<span class="fs-6">/month</span></div>
+                        <p>Perfect for freelancers and small businesses</p>
+                        <ul class="list-unstyled">
+                            <li class="pricing-feature"><i class="fas fa-check me-2"></i> 50 invoices/month</li>
+                            <li class="pricing-feature"><i class="fas fa-check me-2"></i> Basic reporting</li>
+                            <li class="pricing-feature"><i class="fas fa-check me-2"></i> 1 user</li>
+                            <li class="pricing-feature"><i class="fas fa-check me-2"></i> Email support</li>
+                        </ul>
+                        <a href="#get-started" class="btn btn-outline w-100">Get Started</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="pricing-card" style="border: 2px solid var(--primary-color);">
+                        <span class="badge bg-dark position-absolute top-0 end-0 m-3">Popular</span>
+                        <h3 class="pricing-title">Professional</h3>
+                        <div class="pricing-price">$29<span class="fs-6">/month</span></div>
+                        <p>Ideal for growing businesses</p>
+                        <ul class="list-unstyled">
+                            <li class="pricing-feature"><i class="fas fa-check me-2"></i> 500 invoices/month</li>
+                            <li class="pricing-feature"><i class="fas fa-check me-2"></i> Advanced reporting</li>
+                            <li class="pricing-feature"><i class="fas fa-check me-2"></i> 5 users</li>
+                            <li class="pricing-feature"><i class="fas fa-check me-2"></i> Priority support</li>
+                            <li class="pricing-feature"><i class="fas fa-check me-2"></i> Client portal</li>
+                        </ul>
+                        <a href="#get-started" class="btn btn-primary w-100">Get Started</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="pricing-card">
+                        <h3 class="pricing-title">Enterprise</h3>
+                        <div class="pricing-price">$99<span class="fs-6">/month</span></div>
+                        <p>For large organizations</p>
+                        <ul class="list-unstyled">
+                            <li class="pricing-feature"><i class="fas fa-check me-2"></i> Unlimited invoices</li>
+                            <li class="pricing-feature"><i class="fas fa-check me-2"></i> Custom reporting</li>
+                            <li class="pricing-feature"><i class="fas fa-check me-2"></i> Unlimited users</li>
+                            <li class="pricing-feature"><i class="fas fa-check me-2"></i> 24/7 support</li>
+                            <li class="pricing-feature"><i class="fas fa-check me-2"></i> API access</li>
+                            <li class="pricing-feature"><i class="fas fa-check me-2"></i> Dedicated account manager</li>
+                        </ul>
+                        <a href="#get-started" class="btn btn-outline w-100">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Started Section -->
+    <section id="get-started" class="py-5 bg-dark text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2 class="mb-3">Ready to simplify your billing?</h2>
+                    <p class="mb-0">Join thousands of businesses using InvoicePro to manage their invoicing and payments.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+                    <a href="#signup" class="btn btn-light btn-lg">Get Started for Free</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login to Your Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="loginEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <a href="#forgot-password">Forgot password?</a>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <p class="mb-0">Don't have an account? <a href="#signup">Sign up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="footer-title">InvoicePro</h5>
+                    <p>Smart billing solutions for modern businesses. Streamline your invoicing process and get paid faster.</p>
+                    <div class="mt-4">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="footer-title">Product</h5>
+                    <a href="#" class="footer-link">Features</a>
+                    <a href="#" class="footer-link">Pricing</a>
+                    <a href="#" class="footer-link">Updates</a>
+                    <a href="#" class="footer-link">Roadmap</a>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="footer-title">Company</h5>
+                    <a href="#" class="footer-link">About Us</a>
+                    <a href="#" class="footer-link">Careers</a>
+                    <a href="#" class="footer-link">Blog</a>
+                    <a href="#" class="footer-link">Press</a>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="footer-title">Support</h5>
+                    <a href="#" class="footer-link">Help Center</a>
+                    <a href="#" class="footer-link">Community</a>
+                    <a href="#" class="footer-link">Contact Us</a>
+                    <a href="#" class="footer-link">API Docs</a>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="footer-title">Legal</h5>
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="#" class="footer-link">Security</a>
+                    <a href="#" class="footer-link">GDPR</a>
+                </div>
+            </div>
+            <div class="copyright text-center">
+                <p class="mb-0">&copy; 2023 InvoicePro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+        
+        // Login modal trigger
+        document.addEventListener('DOMContentLoaded', function() {
+            if(window.location.hash === '#login') {
+                var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                loginModal.show();
+            }
+        });
+    </script>
+</body>
+</html>
